@@ -1,8 +1,8 @@
-const SERVER_URL = 'https://bdemo.microformas.com.mx/select';
+//const SERVER_URL = '/select';
                     
 //PROD //const SERVER_URL = 'https://portalotrosbancos.com/medicos';
 
-//const SERVER_URL = "/medicos";
+const SERVER_URL = 'https://bdemo.microformas.com.mx/select';
 
 export const ENDPOINTS = {
   AUTH: `${SERVER_URL}/auth/login`,
