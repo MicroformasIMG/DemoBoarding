@@ -1,0 +1,24 @@
+<div class="persons">
+    <div class="persons__options">
+        <mat-button-toggle-group [vertical]="true">
+            <mat-button-toggle (change)="typePerson($event)" [value]="0">Soy persona física</mat-button-toggle>
+            <mat-button-toggle (change)="typePerson($event)" [value]="1">Soy persona moral o física con
+                actividad empresarial</mat-button-toggle>
+        </mat-button-toggle-group>
+
+    </div>
+    <div class="persons__links">
+        <div class="fisica" *ngIf="person === 0 && !hasAccount">
+            <p class="redirect__legend"></p>
+            <button mat-raised-button color="warn" class="action"
+                onclick="window.open('./','_blank');">Consigue tu
+                cuenta</button>
+        </div>
+        <div class="both" *ngIf="person === 1 && !hasAccount">
+            <p class="both__legend">A</p>
+            <button mat-raised-button color="warn" class="action"
+                onclick="window.open('./','_blank');">Consigue tu
+                cuenta</button>
+        </div>
+    </div>
+</div>

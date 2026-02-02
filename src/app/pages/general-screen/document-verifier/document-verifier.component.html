@@ -1,0 +1,32 @@
+
+<div class="content_document_verifier">
+    <p class="title__header">Verificador de Documentos</p>
+    <div class="content_document_verifier-box">
+        <div class="document_verifier-box">
+            <span >INE (Identificación oficial)</span>
+            <input type="file" name="file-ine" id="file-ine" class="inputfile"
+                (change)="onFileSelected($event, 'ine')" />
+            <mat-spinner diameter="30" color="warn" *ngIf="isActiveine"></mat-spinner>
+        </div>
+        <div class="document_verifier-box">
+            <span>Constancia de Situación Fiscal (SAT)</span>
+            <input type="file" name="file-ine" id="file-sat" class="inputfile"
+                (change)="onFileSelected($event, 'constancia')" />
+            <mat-spinner diameter="30" color="warn" *ngIf="isActivecon"></mat-spinner>
+        </div>
+        <div class="document_verifier-box">
+            <span>Comprobante de Domicilio(CFE u otro)</span>
+            <input type="file" name="file-ine" id="file-otro" class="inputfile"
+                (change)="onFileSelected($event, 'domicilio')" />
+            <mat-spinner diameter="30" color="warn" *ngIf="isActivedom"></mat-spinner>
+        </div>
+    </div>
+    <div class="document_verifier-results" *ngIf="curp || domicilio || nombre || tipo || emisor || razon">
+        <h3>Resultados del Verificador de Documentos:</h3>
+        <p *ngIf="curp"><strong>CURP:</strong> {{ curp }}</p>
+        <p *ngIf="domicilio"><strong>Domicilio:</strong> {{ domicilio }}</p>
+        <p *ngIf="nombre"><strong>Nombre:</strong> {{ nombre }}</p>
+        <p *ngIf="tipo"><strong>Tipo de Documento:</strong> {{ tipo }}</p>
+        <p *ngIf="emisor"><strong>Emisor:</strong> {{ emisor }}</p>
+        <p *ngIf="razon"><strong>Razón:</strong> {{ razon }}</p>
+</div>

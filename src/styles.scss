@@ -1,0 +1,114 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./assets/styles/index.scss";
+
+:root{
+    --title-color: #990000;
+    --text-color:#212729;
+    --red:#f07e29;
+
+  
+}
+
+.btn-color-n{
+    color: #f07e29;
+}
+
+.mat-mdc-checkbox.mat-accent .mdc-checkbox--selected~.mdc-checkbox__ripple {
+    background: #f07e29!important;
+}
+
+.mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background, .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background {
+    border-color: #f07e29!important;
+    background-color: #f07e29!important;
+}
+
+.mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled:checked+.mdc-radio__background .mdc-radio__outer-circle {
+    border-color: #f07e29!important;
+}
+.mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled+.mdc-radio__background .mdc-radio__inner-circle {
+    border-color: #f07e29!important;
+}
+
+@font-face {
+    font-family: "SantanderText-Regular";
+    src: url('./assets/fonts/SantanderText-Regular.ttf') format('trueType');
+}
+
+@font-face {
+    font-family: 'SantanderText-Italic';
+    src: url('./assets/fonts/SantanderText-Italic.ttf') format('trueType');
+}
+
+@font-face {
+    font-family:'SantanderText-Bold';
+    src: url('./assets/fonts/SantanderText-Bold.ttf') format('trueType');
+}
+
+@font-face {
+    font-family: 'SantanderHeadline-Regular';
+    src: url('./assets/fonts/SantanderHeadline-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'SantanderHeadline-Bold';
+    src: url('./assets/fonts/SantanderHeadline-Bold.ttf');
+}
+
+*{
+    box-sizing: border-box;
+    font-family: "SantanderText-Regular";
+    font-style: normal;
+    font-weight: 400;
+  
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.input:focus,textarea:focus,select:focus{
+
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+
+}
+
+.error{
+    border: 2px solid red!important;
+    box-shadow: 0 0 0 .1rem red!important;
+    outline: none;
+}
+
+.success{
+    border: 2px solid green!important;
+    box-shadow: 0 0 0 .1rem green!important;
+    outline: none;
+}
+
+.warning{
+
+    border: 2px solid #ffbc0e!important;
+    box-shadow: 0 0 0 .1rem #ffbc0e!important;
+    outline: none;
+}
+.valid{
+
+    border: 2px solid #42a948!important;
+    box-shadow: 0 0 0 .1rem #42a948!important;
+    outline: none;
+}
+
+.text-size{
+    @media (min-width: 768px) {
+        font-size: 1rem !important;
+    }
+}
+
+.bold{
+    font-weight: bold;
+}
+
+
+
+

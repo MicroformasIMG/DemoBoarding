@@ -1,0 +1,19 @@
+
+.title{
+    &__header{
+        text-align: left;
+        color: var(--title-color);
+        font-weight: bold;
+
+        @media (min-width: 768px) {
+            font-size: 28px;
+        }
+      
+    }
+    &__legend{
+        text-align: justify;
+        @media (min-width: 768px) {
+            font-size: 20px;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+<app-header></app-header>
+<div class="confirm__info">
+    <h1 class="confirm__info__title red">Tu solicitud ha sido enviada</h1>
+    <img class="confirm__info__img" src="assets/images/check.png" alt="" srcset="">
+
+    <div class="confirm__info__fol">
+        <h2 class="">Folio: {{fol}}</h2>
+        <h2 class="">{{date | date: 'dd/MM/yyyy'}}</h2>
+    </div>
+
+    <div class="confirm__actions">
+        <button mat-raised-button color="warn" (click)="toLogin()">Registrar otro comercio</button>
+    </div>
+
+</div>

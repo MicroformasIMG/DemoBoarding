@@ -1,0 +1,110 @@
+<form class="form" [formGroup]="contactForm">
+
+    <div class="form__input">
+        <div class="label">Nombre completo</div>
+        <input type="text" class="input" formControlName="name" (keypress)="keyPressLetters($event)"  [ngClass]="{'error':isError('name','required') || isError('name','minlength')}">
+        <mat-error *ngIf="isError('name','required')">El nombre es requerido</mat-error>
+        <mat-error *ngIf="isError('name','minlength')">Se requieren al menos 3 caracteres</mat-error>
+      
+    </div>
+    <div class="form__input">
+        <div class="label">Teléfono de contacto</div>
+        <input type="text" class="input" formControlName="phone" (keypress)="keyPressNumbers($event)" maxlength="10" [ngClass]="{'error':isError('phone','required') || isError('phone','minlength')||isError('phone','pattern')}">
+        <mat-error *ngIf="isError('phone','required')">El teléfono es requerido</mat-error>
+        <mat-error *ngIf="isError('phone','minlength')&&!isError('phone','pattern')">El teléfono debe ser de 10 dígitos</mat-error>
+        <mat-error *ngIf="isError('phone','pattern')">El teléfono no debe contener caracteres o espacios</mat-error>
+    </div>
+    <div class="form__input">
+        <div class="label">Correo electrónico</div>
+        <input type="text" class="input" formControlName="email" [ngClass]="{'error': isError('email','pattern') || isError('email','required')}">
+        <mat-error *ngIf="isError('email','required')">El email es requerido</mat-error>
+        <mat-error *ngIf="isError('email','pattern')">El email no es válido</mat-error>
+    </div>
+
+    <div class="form__checks">
+
+        <mat-checkbox 
+            class="check" 
+            ngClass="btn-color-n"
+            value="0" 
+            (change)="checkOptions($event)" 
+            formControlName="fact" 
+            >
+            <div class="option">
+                Facturación
+            </div>
+           
+            
+
+        </mat-checkbox>
+
+        <mat-checkbox 
+            class="check" 
+            ngClass="btn-color-n"
+            value="1" 
+            (change)="checkOptions($event)" 
+            formControlName="inst" 
+           
+         
+           
+            >
+            <div class="option">
+                Instalación
+            </div>
+           
+            
+
+        </mat-checkbox>
+
+        <mat-checkbox 
+            class="check" 
+            ngClass="btn-color-n"
+            value="2" 
+            (change)="checkOptions($event)" 
+            formControlName="acla" 
+
+          
+           
+            >
+            <div class="option">
+                Aclaraciones
+            </div>
+           
+            
+
+        </mat-checkbox>
+
+        <mat-checkbox 
+            class="check" 
+            ngClass="btn-color-n"
+            value="3" 
+            (change)="checkOptions($event)" 
+            formControlName="cont" 
+
+            
+           
+            >
+            <div class="option">
+                Contabilidad
+            </div>
+           
+            
+
+        </mat-checkbox>
+
+    </div>
+
+    <div class="form__add" *ngIf="newcontact">
+        <button mat-icon-button color="primary" type="button" (click)="contact()">
+            <mat-icon class="add">add_circle</mat-icon>
+        </button>
+        <div class="text">Agregar otro contacto</div>
+    </div>
+
+    <div class="form__add" *ngIf="showDelete">
+        <button mat-icon-button color="primary" type="button" (click)="deleteContact()">
+            <mat-icon class="add">remove_circle</mat-icon>
+        </button>
+        <div class="text">eliminar contacto</div>
+    </div>
+</form>

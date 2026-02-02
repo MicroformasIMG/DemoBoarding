@@ -1,0 +1,179 @@
+<app-header></app-header>
+<app-navbar [state]="1"></app-navbar>
+<form class="container" [formGroup]="generalForm" (ngSubmit)="sendData()" *ngIf="generalForm">
+    <div class="section">
+        <app-title [title]="'Comencemos'"
+            [text]="'Para brindarte la mejor atención, por favor indicanos a que correo escribirte.'">
+        </app-title>
+        <app-email-form [emailForm]="getGroupByName('contact')"></app-email-form>
+
+    </div>
+
+        <app-document-verifier (selectedOption)="typeDocumentBolean($event)"></app-document-verifier>
+    
+    <div class="section">
+        <app-title [title]="'Tu cuenta'"
+            [text]="'Es necesario tener una cuenta para hacer tu solicitud.'">
+        </app-title>
+        <app-option [optionOne]="'SI tengo cuenta de cheques'" [onlyOne]="true"
+             (selectedOption)="typeAccount($event)"
+            [formOption]="getGroupByName('accountOptions')">
+        </app-option>
+    </div>
+
+    <div class="section" *ngIf="hasAccount">
+        <div class="toggle" *ngIf="!showLinks">
+            <div class="toggle__title">
+                ¿Para qué necesitas una cuenta?
+            </div>
+            <div class="togle__text">
+                Se solicita la cuenta CLABE para validar tus datos y hacer el trámite más ágil.
+            </div>
+        </div>
+        <app-clabe *ngIf="!showLinks" [clabeForm]="getGroupByName('account')"></app-clabe>
+    </div>
+
+    <div class="section" *ngIf="showLinks">
+        <div></div>
+        <app-links [hasAccount]="hasAccount"></app-links>
+    </div>
+
+    <div class="promotion">
+        <app-promotion></app-promotion>
+    </div>
+
+    <div *ngIf="hasAccount">
+        <div class="section">
+            <app-title [title]="'Cuéntanos más de ti'"
+                [text]="'Te solicitamos esta información para ofrecerte la solución que mejor se adapte a tus necesidades (los datos que captures, serán tomados como los del representante legal).'">
+            </app-title>
+
+            <div class="data-form">
+                <app-data-form [dataForm]="getGroupByName('client')" [name]="addValidatorContactFlag"></app-data-form>
+                <app-commercial-form [commercialForm]="getGroupByName('commercialAddress')"
+                    [optionForm]="getGroupByName('amexOption')" [name]="addValidatorContactFlag"></app-commercial-form>
+            </div>
+        </div>
+
+        <div class="section">
+            <app-title [title]="'Validación de datos'"
+                [text]="'Elige el documento que vas a presentar y sube o toma una foto del mismo.'">
+            </app-title>
+            <app-data-validation [validationForm]="getGroupByName('validation')"
+                [formOption]="getGroupByName('validationOptions')" (uploadFile)="setFile($event)"
+                (resetFlag)="resetFile($event)">
+            </app-data-validation>
+        </div>
+
+        <div class="section">
+            <app-title [title]="'Registro de contactos'"
+                [text]="'Necesitamos los datos de quienes van dar seguimiento al proceso en temas de facturación, instalación, aclaraciones y contabilidad.'">
+            </app-title>
+
+            <div class="contacts">
+                <mat-checkbox class="btn-color-n" (change)="noContact($event)" [checked]="imContact">
+                    <div class="text-size">Yo soy el contacto</div>
+                </mat-checkbox>
+                <div *ngIf="!imContact">
+
+                    <app-contact-form (status)="statusOne($event)" (addContact)="checkaddTwo($event)"
+                        [contactForm]="getGroupByName('contact1')" [selectedOptions]="[]">
+                    </app-contact-form>
+
+                    <app-contact-form *ngIf="contacts[1]" [selectedOptions]="status.getOne()"
+                        (status)="statusTwo($event)" [contactForm]="getGroupByName('contact2')"
+                        [showDelete]="contacts[1]" (deleContact)="deletwTwo()" (addContact)="checkaddThree($event)">
+                    </app-contact-form>
+
+                    <app-contact-form *ngIf="contacts[2]" [selectedOptions]="status.getTwo()"
+                        (status)="statusThree($event)" [contactForm]="getGroupByName('contact3')"
+                        [showDelete]="contacts[2]" (deleContact)="deleteThree($event)"
+                        (addContact)="checkaddFour($event)">
+
+                    </app-contact-form>
+
+                    <app-contact-form *ngIf="contacts[3]" [selectedOptions]="status.getThree()"
+                        [contactForm]="getGroupByName('contact4')" [showDelete]="contacts[3]" (d
+                        ontact)="deleteFour($event)">
+
+                    </app-contact-form>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <app-title [title]="'Elige el producto'">
+            </app-title>
+            <div class="info">
+
+                <app-radio-check [formOption]="getGroupByName('productOption')" (value)="activeProduct($event)"></app-radio-check>
+
+                <p class="info__parraf">
+                    Como parte de los beneficios por pertenecer a Recibe Pagos, en la contratación Terminal
+                    Inalámbrica no tendrá cobro por renta mensual y la tasa de descuento cobrada se le reembolsará al
+                    final del mes.
+                </p>
+
+                <div *ngIf="inAlambrica && showProducts">
+
+                    <p class="info__question">¿Hay alguna compañía que tenga mejor red en tu comercio?</p>
+                    <app-option [optionOne]="'TELCEL'" [optionTwo]="'MOVISTAR'" [onlyOne]="false"
+                        (selectedOption)="campaignOptions($event)" [formOption]="getGroupByName('companyOptions')">
+                    </app-option>
+
+                    <div class="margin">
+                        <mat-divider></mat-divider>
+
+                        <div class="tasa">
+                            <div class="tasa__title">Tasa de descuento</div>
+                            <div class="tasa__info">
+                                <p>Débito:  {{getTasa('debit')}}% + IVA</p>
+                                <p> Crédito: {{getTasa('credit')}}% + IVA</p>
+                                <p>Internacional: {{getTasa('international')}}% + IVA</p>
+                            </div>
+                        </div>
+                        <div class="question">¿Cuántas terminales necesitas?</div>
+                        <div class="counter">
+                            <button class="btn" type="button" (click)="decrement()">-</button>
+                            <div class="counter__result">{{numTerminals}}</div>
+                            <button class="btn" type="button" (click)="increment()">+</button>
+                        </div>
+                        <div class="esquem">Esquema de pago</div>
+                        <div class="month">Mensual</div>
+                    </div>
+
+                    <div>
+                        <div class="info__check" *ngIf="inAlambrica">
+                            <mat-checkbox class="btn-color-n" [checked]="true">El cliente desea recibir información de
+                                promociones para nuevos o actuales productos y/o servicios. </mat-checkbox>
+                        </div>
+
+                        <div class="info__firm" *ngIf="inAlambrica">
+                            <div class="title">Firma electrónica</div>
+                            <div class="text">Estás por iniciar el proceso de firma electrónica remota. Se enviará un
+                                mensaje al número de teléfono registrado.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+              
+
+        
+                
+
+            </div>
+        </div>
+
+        <div class="section">
+            <div></div>
+
+            <div class="actions mb">
+                <button class ="btn-color-n" mat-raised-button  class="action" [disabled]="recover  ? false : generalForm.invalid ">Firma eléctronica</button>
+            </div>
+        </div>
+
+    </div>
+</form>

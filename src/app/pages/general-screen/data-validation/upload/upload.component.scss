@@ -1,0 +1,86 @@
+.file-upload{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 6rem;
+
+  &__container{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      border: 2px solid black;
+      border-radius: 10px;
+      padding: 2px;
+      width: 100%;
+      height: 6rem;
+ 
+
+      label{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+  }
+
+  &__input{
+      
+      display: none;
+      visibility: none;
+  }
+
+  &__text{
+      margin: 0;
+      padding: 0;
+      font-size: 12px;
+  }
+}
+
+
+
+.success{
+  background-color: #7D9F43;
+  color: white;
+  border: none;
+}
+
+.button{
+
+  border: none;
+  background: transparent;
+  color: blue;
+  text-decoration: underline blue;
+  padding: 2px;
+  cursor: pointer;
+
+  &--error{
+
+    border: none;
+    background: transparent;
+    color: red;
+    text-decoration: underline red;
+    padding: 2px;
+    cursor: pointer;
+  
+  }
+  
+}
+
+.mat-icon{
+  height: 50px;
+  width: 50px;
+}
+
+.material-icons{
+  font-size: 50px;
+}
+
+.text-center{
+  text-align: center;
+}

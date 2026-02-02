@@ -1,0 +1,13 @@
+<form class="options" [formGroup]="generalForm">
+    <div *ngIf="title" class="options__title">{{title}}</div>
+
+    <mat-radio-group formControlName="opt">
+        <div *ngFor="let it of identificacionData" class="options__option">
+            <mat-radio-button  class="btn-color-n" value="{{it.id}}" (change)="selected($event)">
+                <div class="text">
+                    {{it.nombre}}
+                </div>
+            </mat-radio-button>
+        </div>
+    </mat-radio-group>
+</form>

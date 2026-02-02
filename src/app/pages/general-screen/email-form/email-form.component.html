@@ -1,0 +1,15 @@
+<form class="form" [formGroup]="emailForm">
+    <div class="form__input">
+        <div class="label">Correo electrónico del cliente</div>
+        <input type="text" class="input" formControlName="email" [ngClass]="{'error': isError('email','required') || isError('email','emailInvalid') || isError('email','email') }">
+        <mat-error *ngIf="isError('email','required')">El email es requerido</mat-error>
+        <mat-error *ngIf="isError('email','emailInvalid')">Favor de ingresar el correo electrónico de tu cliente</mat-error>
+        <mat-error *ngIf="isError('email','email')">El email no es válido</mat-error>
+    </div>
+    <div class="form__check">
+        <mat-checkbox class="check" ngClass="btn-color-n" [checked]="true">
+            <p class="legend">Autorizo el uso de mis datos para dar seguimiento a la solicitud. Acepto que leí los términos y condiciones.</p>
+        </mat-checkbox>
+    </div>
+    
+</form>

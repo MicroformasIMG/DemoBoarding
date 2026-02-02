@@ -1,0 +1,17 @@
+<div class="container">
+    <form class="form" [formGroup]="clabeForm">
+        <div class="form__input">
+            <div class="label">Escribe tu cuenta CLABE</div>
+            <input type="text" #clabe formControlName="clabe" class="input" maxlength="18" autocomplete="off" (keypress)="keyPressNumbers($event)" [ngClass]="{'error':isError('clabe','required') || isError('clabe','isValid'),'success':!isError('clabeAccount','isValid') && clabe.value.length === 18}">
+            <mat-error *ngIf="isError('clabe','required')">La cuenta CLABE es requerida</mat-error>
+            <mat-error *ngIf="isError('clabe','isValid')">La  cuenta CLABE no esta completa</mat-error>
+        </div>
+        
+        <div class="form__input">
+            <div class="label">Confirma tu cuenta CLABE</div>
+            <input type="text" #confirm  maxlength="18" formControlName="confirmClabe" class="input"  autocomplete="off" oncopy="return false;"  onpaste='return false' [ngClass]="{'error': clabeForm.hasError('noMatch')&&confirm.value.length == 18,'success':!clabeForm.hasError('noMatch')&&confirm.value.length == 18}">
+            <mat-error *ngIf="clabeForm .hasError('noMatch')&&confirm.value.length == 18">Las cuentas CLABE no son iguales</mat-error>
+        </div>
+            
+    </form>
+</div>

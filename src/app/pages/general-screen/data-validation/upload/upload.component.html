@@ -1,0 +1,43 @@
+<div class="file-upload" *ngIf="existFile === false && sizeError === false">
+    <div class="file-upload__container">
+        <mat-spinner diameter="30" color="warn" *ngIf="isUpload"></mat-spinner>
+        <input type="file" accept="application/pdf,.png,.jpg,.jpeg" [id]="this.componentName" class="file-upload__input"
+            (change)="captureFile($event)">
+        <label [for]="this.componentName" *ngIf="!isUpload">
+            <mat-icon *ngIf="!fileOtro">file_upload</mat-icon>
+            <mat-icon *ngIf="fileOtro">add_a_photo</mat-icon>
+            <p class="file-upload__text" *ngIf="!fileOtro">Adjuntar archivo</p>
+            <p class="file-upload__text" *ngIf="fileOtro">Otro documento</p>
+            <p class="file-upload__text" *ngIf="onlyPdf === true">PDF</p>
+            <p class="file-upload__text" *ngIf="onlyPdf === undefined">PDF,JPG,PNG</p>
+        </label>
+    </div>
+    <mat-error class="text-center" *ngIf="isError">Verifica el tipo de archivo</mat-error>
+    <mat-error class="text-center" *ngIf="!isError && isErrorUpload">Error intentalo de nuevo más tarde</mat-error>
+</div>
+
+<div class="file-upload" *ngIf="existFile">
+    <div class="file-upload__container" [ngClass]="{'success': img}">
+
+        <label [for]="this.componentName" *ngIf="!isUpload">
+            <mat-icon>check</mat-icon>
+        </label>
+        <p class="file-upload__text text-center">Archivo adjuntado</p>
+
+    </div>
+    <button class="button" (click)="reUpload()" type="button">Volver a tomar</button>
+</div>
+
+<div class="file-upload" *ngIf="sizeError">
+    <div class="file-upload__container" [ngClass]="{'success': img}">
+
+        <label [for]="this.componentName" *ngIf="!isUpload">
+            <mat-icon color="warn">priority_high</mat-icon>
+         </label>
+        <p class="file-upload__text text-center">Máximo 5MB</p>
+
+    </div>
+    <button class="button--error" (click)="reUpload()" type="button">Volver a tomar</button>
+</div>
+
+

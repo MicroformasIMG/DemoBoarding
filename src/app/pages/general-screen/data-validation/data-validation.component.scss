@@ -1,0 +1,55 @@
+.form {
+
+    &__input,
+    &__check {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 95%;
+        margin-bottom: 1rem;
+        gap:0.2rem;
+
+        .input {
+
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            font-weight: 400;
+            margin-top: 5px;
+            padding: 0.5rem;
+            line-height: 1.5;
+            width: 100%;
+
+
+        }
+
+        .check {
+            align-items: center;
+            display: flex;
+            justify-content: left;
+            text-align: left;
+            color: #ffff;
+        }
+        .read{
+            background-color: lightgray;
+        }
+    }
+
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.data{
+    &__upload{
+        margin-top: 1rem;
+    }
+}
+
+
+.fileIne{
+    width:121px;
+    position: relative;
+    display: inline-block;
+}

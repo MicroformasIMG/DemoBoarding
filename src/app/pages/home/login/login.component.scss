@@ -1,0 +1,61 @@
+.login{
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    gap:1rem;
+  
+    .label{
+        font-size: 20px;
+        color: white;
+    }
+
+    &__input{
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .input{
+        background-color: #fff;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        font-size: 1rem;
+        font-weight: 400;
+        margin-top: 5px;
+        width: 300px;
+        padding: 0.5rem;
+        line-height: 1.5;
+        
+    }
+
+    .button{
+        
+        height: 3rem;
+        background-color: #f07e29;
+        @media (min-width: 768px) {
+            width: 20%;
+
+        }
+    }
+
+    .small{
+        color: #ffff;
+        font-size: 1rem;
+        
+    }
+
+    .forgot{
+        color: #7d9f43;
+        font-size: 1rem;
+        text-decoration: none;
+        margin-left: 1em;
+
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+
+
+
+}

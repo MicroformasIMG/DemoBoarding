@@ -1,0 +1,61 @@
+
+<form class="form" [formGroup]="commercialForm">
+    <h3 class="bold">Dirección comercial (donde será instalada la terminal)</h3>
+    <div class="form__input">
+        <div class="label">Calle y número</div>
+        <input type="text" class="input" formControlName="street" [ngClass]="{'error': isError('street','required')}">
+        <mat-error *ngIf="isError('street','required')">Calle y número son requeridos</mat-error>
+    </div>
+    <div class="form__input">
+        <div class="label">Código postal</div>
+        <input type="text" class="input" (keyup)="infoAddress()" #search formControlName="postalCode" (keypress)="keyPressNumbers($event)" maxlength="5" [ngClass]="{'error': isError('postalCode','required')}">
+        <mat-error *ngIf="isError('postalCode','required')">Código postal es requerido</mat-error>
+    </div>
+    <div class="form__input">
+        <div class="label">Colonia</div>
+        <select name="" id="" class="input" formControlName="suburb" [ngClass]="{'error': isError('suburb','required')}">
+            <option [ngValue]="recoverSelected" [selected]="recoverSelected" *ngIf="recoverSelected">{{recoverSelected}}</option>
+            <option value="{{suburb}}" *ngFor="let suburb of suburbOptions">{{suburb}}</option>
+        </select>
+    </div>
+
+    <div class="form__input">
+        <div class="label">Ciudad</div>
+        <input type="text" formControlName="city" class="input read" readonly>
+    </div>
+
+    <div class="form__input">
+        <div class="label">Estado</div>
+        <input type="text" formControlName="state" class="input read" readonly>
+    </div>
+
+    <div class="form__input">
+        <div class="label">¿Cuál es la facturación mensual promedio con todas las formas de pago?</div>
+        <input type="text" class="input" formControlName="monthFact" currencyMask [options]="{align: 'left'}" [ngClass]="{'error': isError('monthFact','required') || commercialForm.hasError('factError')||commercialForm.hasError('otherFactError')}">
+        <mat-error *ngIf="commercialForm.hasError('factError')">El valor de factura mensual debe ser igual o mayor a la mensualidad con tarjeta</mat-error>
+        <mat-error *ngIf="commercialForm.hasError('otherFactError')">El valor de factura mensual debe ser igual o mayor a el promedio por vaucher</mat-error>
+        <mat-error *ngIf="isError('monthFact','required')">Facturación mensual es requerida</mat-error>
+    </div>
+
+    <div class="form__input">
+        <div class="label">¿Cuál es la facturación mensual promedio con tarjetas?</div>
+        <input type="text" class="input" formControlName="monthTarget"currencyMask [options]="{align: 'left'}" [ngClass]="{'error': isError('monthTarget','required')}">
+        <mat-error *ngIf="isError('monthTarget','required')">Facturación mensual con tarjeta es requerida</mat-error>
+    </div>
+
+    <div class="form__input">
+        <div class="label">¿Cuál es el valor promedio por vaucher?</div>
+        <input type="text" class="input" formControlName="monthVaucher" currencyMask [options]="{align: 'left'}" [ngClass]="{'error': isError('monthVaucher','required')}">
+        <mat-error *ngIf="isError('monthVaucher','required')">Valor promedio es requerido</mat-error>
+    </div>
+
+    <app-option 
+        [title]="'¿Requiere AMEX?'" 
+        [optionOne]="'SI'" 
+        [optionTwo]="'NO'" 
+        [selectedOne]="true"
+        [formOption]="optionForm"
+    >
+    </app-option>
+
+</form>

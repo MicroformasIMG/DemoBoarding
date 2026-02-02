@@ -1,0 +1,23 @@
+<form class="login" [formGroup]="loginForm" (ngSubmit)="sendInfo()">
+    <div class="login__input">
+        <div class="label">Código ejecutivo</div>
+        <input type="text" class="input" formControlName="code">
+        <mat-error *ngIf="isError('code','required')">El código de ejecutivo es requerido</mat-error>
+    </div>
+    <div class="login__input">
+        <div class="label">Ingresa contraseña</div>
+        <input type="password" class="input" formControlName="password">
+        <mat-error *ngIf="isError('password','required')">La contraseña es requerida</mat-error>
+        <mat-error *ngIf="logError">Código o contraseña incorrectos</mat-error>
+    </div>
+
+    <button mat-raised-button color="warn" class="button" [disabled]="loginForm.invalid">
+        Comenzar
+        <mat-icon matPrefix>lock</mat-icon>
+    </button>
+
+    <small class="small">(Te tomará solo 3 minutos)</small>
+
+    <a routerLink="/recover-password" class="forgot">Olvidé mi contraseña</a>
+
+</form>

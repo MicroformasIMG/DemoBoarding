@@ -1,0 +1,47 @@
+<div class="data">
+    <app-option-identificacion [title]="'Identificación del representante legal'"
+        [identificacionData]="indentityOptions"
+        (selectedOption)="checkOption($event)"
+        [formOption]="formOption"
+        >
+    </app-option-identificacion>
+    <div *ngIf="showFile">
+        <div class="form__input" *ngIf="showSimple">
+            <div class="label mt-1">Sube el frente de tu identificación</div>
+            <app-upload [lastSelect]="lastSelectData" [fileType]="0" (reset)="reUpload($event,0)" [componentName]="'IdentificacionFrenteSimple'"
+                (success)="setSuccess($event)"></app-upload>
+        </div>
+        <div *ngIf="showMultipleINE">
+            <div class="label mt-1">Sube la identificación</div>
+            <app-upload class="fileIne" [lastSelect]="lastSelectData" [fileType]="0" (reset)="reUpload($event,0)"
+                (success)="setSuccess($event)"></app-upload>
+            <app-upload style="top: 0px;" *ngIf="showINE2" class="fileIne" [lastSelect]="lastSelectData" [fileOtro]="true"
+                [fileType]="1" (reset)="reUpload($event,1)" (success)="setSuccess($event)"></app-upload>
+            <div class="label mt-1" *ngIf="showINE2">*Sube el reverso de la identificación solamente si viene en dos partes.
+            </div>
+        </div>
+        <div class="form__input mt-1" *ngIf="showMultiple">
+            <div class="label mt-1">Sube el frente de tu identificación</div>
+            <app-upload [lastSelect]="lastSelectData" [fileType]="0" (reset)="reUpload($event,0)" [componentName]="'IdentificacionFrente'"
+                (success)="setSuccess($event)"></app-upload>
+
+            <div class="label mt-1">Sube el reverso de tu identificación</div>
+            <app-upload [lastSelect]="lastSelectData" [fileType]="1" (reset)="reUpload($event,1)" [componentName]="'IdentificacionReverso'"
+                (success)="setSuccess($event)"></app-upload>
+        </div>
+
+        <div class="data__upload">
+            <p class="title">Cédula Fiscal (Opcional)</p>
+            <app-upload [lastSelect]="'6'" [fileType]="0" (reset)="reUpload($event,4)" (success)="setSuccess($event)" [componentName]="'CedulaFiscal'"></app-upload>
+        </div>
+    </div>
+
+    <form [formGroup]="validationForm" class="form">
+        <div class="form__input">
+            <div class="label bold">Referencias del comercio <span><small>(opcional)</small></span></div>
+            <div class="label">Para poder encontrarte más fácilmente, necesitamos referencias como color del
+                inmueble, entre que calles, etc.</div>
+            <input type="text" formControlName="reference" class="input">
+        </div>
+    </form>
+</div>

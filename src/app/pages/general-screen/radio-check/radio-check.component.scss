@@ -1,0 +1,42 @@
+.info {
+
+    &__products {
+        border: 1px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 10px;
+        gap: 0.8rem;
+
+        .inalambrica {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        @media (min-width: 768px) {
+            text-align: justify;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            gap: 1rem;
+            font-size: 1rem;
+
+
+            .inalambrica {
+                margin-left: 5px;
+            }
+
+        }
+
+
+
+    }
+
+
+
+
+
+
+
+
+}

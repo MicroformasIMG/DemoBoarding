@@ -1,0 +1,73 @@
+<form class="form" [formGroup]="dataForm">
+    <div class="form__input">
+        <div class="label">Nombre del representante legal</div>
+        <input type="text" class="input" formControlName="nameRepresent" (keypress)="keyPressLetters($event)"  [ngClass]="{'error': isError('nameRepresent','required') || isError('nameRepresent','pattern') || isError('nameRepresent','minlength')}" 
+    >
+        <mat-error *ngIf="isError('nameRepresent','required')">El nombre es requerido</mat-error>
+        <mat-error *ngIf="isError('nameRepresent','minlength')">Se requieren al menos 3 caracteres</mat-error>
+        <mat-error *ngIf="isError('nameRepresent','pattern')">Solo se permiten caracteres</mat-error>
+    </div>
+    <div class="form__input">
+        <div class="label">Teléfono de contacto</div>
+        <input type="text" class="input" formControlName="contactNumber" (keypress)="keyPressNumbers($event)" maxlength="10" [ngClass]="{'error': isError('contactNumber','required') || isError('contactNumber','minlength')||isError('contactNumber','pattern')}">
+        <mat-error *ngIf="isError('contactNumber','contactNumber')">El telefono es requerido</mat-error>
+        <mat-error *ngIf="isError('contactNumber','minlength')&&!isError('contactNumber','pattern')">El teléfono debe ser de 10 dígitos</mat-error>
+        <mat-error *ngIf="isError('contactNumber','required')">El teléfono es requerido</mat-error>
+        <mat-error *ngIf="isError('contactNumber','pattern')">El teléfono no debe contener caracteres o espacios</mat-error>
+        <div class="label--under bold">Este número de teléfono se utilizará para realizar el proceso de firma electrónica.
+        </div>
+    </div>
+
+
+    <div class="form__contact" *ngIf="!addContact">
+        <button mat-icon-button color="primary" type="button" (click)="newNumber()">
+            <mat-icon class="add">add_circle</mat-icon>
+        </button>
+        <div class="text">Agregar otro teléfono</div>
+    </div>
+
+    <div class="form__input" *ngIf="addContact">
+        <div class="label">Teléfono de contacto(2) <span class="red">*</span></div>
+        <input type="tel" class="input" formControlName="alterNumber" autocomplete="off"  maxlength="10" (keypress)="keyPressNumbers($event)" [ngClass]="{'error':isError('alterNumber','required')||isError('alterNumber','minlength')||isError('alterNumber','maxlength')|| isError('alterNumber','pattern')}">
+        <mat-error *ngIf="isError('alterNumber','contactNumber')">El telefono es requerido</mat-error>
+        <mat-error *ngIf="isError('alterNumber','minlength')&&!isError('alterNumber','pattern')">El teléfono debe ser de 10 dígitos</mat-error>
+        <mat-error *ngIf="isError('alterNumber','required')">El teléfono es requerido</mat-error>
+        <mat-error *ngIf="isError('alterNumber','pattern')">El teléfono no debe contener caracteres o espacios</mat-error>
+        <div class="form__contact">
+            <button mat-icon-button color="primary" type="button" (click)="newNumber()">
+                <mat-icon>remove_circle</mat-icon>
+            </button>
+            <div class="text">Solo un teléfono</div>
+        </div>
+    </div>
+
+    <div class="form__input">
+        <div class="label">¿Cuál es el nombre de tu negocio?</div>
+        <input type="text" class="input" formControlName="businessName" [ngClass]="{'error': isError('businessName','required') || isError('businessName','minlength')||isError('businessName','pattern')}">
+        <mat-error *ngIf="isError('businessName','required')">El nombre de negocio es requerido</mat-error>
+        <mat-error *ngIf="isError('businessName','minlength')">Se requieren al menos 3 caracteres</mat-error>
+    </div>
+    <div class="form__input">
+        <div class="label">RFC del comercio</div>
+        <input type="text" #rfc class="input rfc" formControlName="rfc" minlength="12" maxlength="13" [ngClass]="{'error': isError('rfc','required')|| isError('rfc','minlength') || isError('rfc','pattern')}">
+        <mat-error *ngIf="isError('rfc','required')">El RFC es requerido</mat-error>
+        <mat-error *ngIf="isError('rfc','pattern')&& rfc.value.length === 13">El RFC no es válido</mat-error>
+        <mat-error *ngIf="isError('rfc','minlength')">El RFC debe ser alfanúmerico de al menos 12 o 13 letras y/o números.'</mat-error>
+    </div>
+
+    <div class="form__input">
+        <div class="label">¿Cuál es el giro de tu negocio?</div>
+        <select name="" id="" class="input"  formControlName="categoryBusiness" [ngClass]="{'error': isError('categoryBusiness','required')}">
+            <option [value]="business.nombre" *ngFor="let business of businessTypes">{{business.nombre}}</option>
+           
+        </select>
+    </div>
+
+    <div class="form__input">
+        <div class="label">Describe la actividad principal de tu negocio</div>
+        <textarea class="input" rows="8" #limit maxlength="150" (keypress)="keyPressLetters($event)" formControlName="activity" [ngClass]="{'error': isError('activity','required')}"></textarea>
+        <mat-error *ngIf="isError('activity','required')">La actividad es requerida</mat-error>
+        <mat-hint align="end">{{limit.value.length}}/150 caracteres</mat-hint>
+    </div>
+
+</form>

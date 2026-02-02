@@ -1,0 +1,21 @@
+<form class="options" [formGroup]="generalForm">
+    <div class="options__title">{{title}}</div>
+
+    <mat-radio-group formControlName="opt">
+        <div class="options__option">
+            <mat-radio-button class="btn-color-n" value="0" (change)="selected($event)">
+                <div class="text">
+                    {{optionOne}}
+                </div>
+                
+            </mat-radio-button>
+        </div>
+        <div class="options__option" *ngIf="onlyOne === false">
+            <mat-radio-button class="btn-color-n" value="1" (change)="selected($event)">
+                <div class="text">
+                    {{optionTwo}}
+                </div>
+            </mat-radio-button>
+        </div>
+    </mat-radio-group>
+</form>

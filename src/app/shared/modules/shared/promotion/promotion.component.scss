@@ -1,0 +1,91 @@
+@use "../../../../../assets/styles/breakpoints.scss" as m;
+
+.last {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+
+    @include m.breakpoint(medium) {
+        margin-top: 10rem;
+        margin-bottom: 3rem;
+    }
+
+    &__title {
+        font-weight: bold;
+        text-align: center;
+        color: gray;
+
+        @include m.breakpoint(medium) {
+            font-size: 30px;
+        }
+    }
+}
+
+.promotion {
+
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+
+    @include m.breakpoint(medium) {
+        justify-content: space-evenly;
+    }
+
+    &__container {
+
+        background-image: url('../../../../../assets/images/background_promo.png');
+        background-repeat: no-repeat;
+        background-size: 100%;
+
+        display: flex;
+        justify-content: space-between;
+
+        width: 150px;
+        height: 200px;
+
+        @include m.breakpoint(medium) {
+            justify-content: center;
+            width: 450px;
+
+        }
+
+        .info {
+
+            color: #6F7779;
+            display: flex;
+            flex-direction: column;
+
+            gap: 0.5rem;
+            padding: 0.7rem;
+
+            @include m.breakpoint(medium) {
+                gap: 1rem;
+                padding: 3rem;
+
+            }
+
+            &__title {
+                font-size: 1rem;
+                font-weight: 500;
+                text-align: center;
+
+                @include m.breakpoint(medium) {
+                    font-size: 22px;
+                }
+            }
+
+            &__text {
+                font-size: 12px;
+                text-align: center;
+
+                @include m.breakpoint(medium) {
+                    font-size: 22px;
+                }
+            }
+        }
+
+        p {
+            margin: 0;
+        }
+
+    }
+}

@@ -1,0 +1,40 @@
+<app-header></app-header>
+<app-navbar [state]="2"></app-navbar>
+
+<div class="signature" *ngIf="loading">
+    <div class="message">
+        <mat-spinner color="warn" class="signature"></mat-spinner>
+        <p class="loading__msg">Enviando mensaje</p>
+    </div>
+
+</div>
+
+<div class="signature" *ngIf="!loading">
+    <div class="signature__info">
+        <div class="signature__info__img mb-1">
+            <img src="assets/images/phone.svg" alt="" srcset="">
+        </div>
+        <h1 class="signature__info__title">¡Mensaje enviado!</h1>
+
+        <div class="signature__info__text">
+            <p align="center">
+                Se realizará el proceso de firma electrónica por parte del
+                cliente. Al concluir de manera exitosa visualizará una confirmación
+                en esta ventana
+            </p>
+        </div>
+
+    </div>
+
+    <div class="signature__actions-buttons">
+        <h4>¿No recibió el mensaje?</h4>
+
+        <div class="buttons-reenvio">
+            <div class="reenvio btn-color-n"><button mat-raised-button  (click)="sendRequestEmail()">Reenviar por
+                    EMAIL</button></div>
+            <div class="reenvio btn-color-n"> <button mat-raised-button color="warn" (click)="sendRequest()">Reenviar por
+                    SMS</button></div>
+        </div>
+    </div>
+
+</div>

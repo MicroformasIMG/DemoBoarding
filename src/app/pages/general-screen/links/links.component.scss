@@ -1,0 +1,40 @@
+.persons {
+    gap: 1rem;
+
+    &__options {
+
+        width: 100%;
+        
+        mat-button-toggle-group {
+            width: 95%;
+        }
+        .mat-button-toggle-checked.mat-button-toggle-appearance-standard {
+            color: white !important;
+            font-weight: 400;
+            background: var(--red) !important;
+
+        }
+    }
+}
+
+.fisica,
+.both {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    width: 90%;
+
+    p {
+        text-align: center;
+        font-weight: 500;
+    }
+}
+
+.action {
+    height: 2.5rem;
+    width: 80%;
+    background-color: var(--red) !important;
+}

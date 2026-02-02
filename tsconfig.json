@@ -1,0 +1,45 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
+    "lib": [
+      "ES2022",
+      "dom"
+    ],
+    "paths": {
+      "@environments/*": ["src/environments/*"],
+      "@config/*": ["src/app/config/*"],
+      "@enums": ["src/app/shared/enums/index.ts"],
+      "@guards": ["src/app/shared/guards/index.ts"],
+      "@interceptors": ["src/app/shared/interceptors/index.ts"],
+      "@interfaces": ["src/app/shared/interfaces/index.ts"],
+      "@models": ["src/app/shared/models/index.ts"],
+      "@modules": ["src/app/shared/modules/index.ts"],
+      "@pipes": ["src/app/shared/pipes/index.ts"],
+      "@services": ["src/app/shared/services/index.ts"]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}
